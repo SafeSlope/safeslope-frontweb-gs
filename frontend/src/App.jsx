@@ -1,9 +1,8 @@
-import React from 'react'
-
-const App = () => {
+export default function App() {
   return (
-    <div>App</div>
-  )
+    <main>
+      <h1>SafeSlope</h1>
+      <p>Safe slopes, peaceful lives.</p>
+    </main>
+  );
 }
-
-export default App

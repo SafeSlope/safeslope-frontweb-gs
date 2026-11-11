@@ -1,1 +1,12 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-slate-800 antialiased;
+}
+
+/* foco visível para quem navega pelo teclado (WCAG) */
+:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-ocean;
+}

@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <AlertBanner show={isDanger} />
+      <AlertBanner show={isDanger} sensor={reading?.sensor} />
       <Header view={view} onChangeView={setView} />
 
       <main className="mx-auto max-w-5xl space-y-6 px-4 py-6">
@@ -29,11 +29,12 @@ export default function App() {
             taxaSubida={reading?.taxaSubida}
             online={online}
             lastUpdate={lastUpdate}
+            sensor={reading?.sensor}
           />
           <WeatherCard chuva={reading?.chuva} chuva24h={reading?.chuva24h} umidadeSolo={reading?.umidadeSolo} />
         </div>
 
-        <RiskMap />
+        <RiskMap estado={estado} />
 
         {view === "cidadao" ? (
           <div className="grid gap-6 md:grid-cols-2">

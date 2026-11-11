@@ -3,7 +3,8 @@ import { getSectors } from "../services/api";
 import { RISK_STYLES } from "../utils/risk";
 
 // Mapa simplificado: cada bloco é um setor monitorado
-export default function RiskMap() {
+// Recarrega quando o estado do sensor muda
+export default function RiskMap({ estado }) {
   const [sectors, setSectors] = useState([]);
   const [filtro, setFiltro] = useState("Todos");
 
@@ -11,7 +12,7 @@ export default function RiskMap() {
     getSectors()
       .then(setSectors)
       .catch(() => setSectors([]));
-  }, []);
+  }, [estado]);
 
   const bairros = ["Todos", ...new Set(sectors.map((s) => s.bairro))];
   const visiveis = filtro === "Todos" ? sectors : sectors.filter((s) => s.bairro === filtro);
@@ -45,6 +46,7 @@ export default function RiskMap() {
                 <p className="text-xs text-slate-500">{sector.id} · {sector.bairro}</p>
                 <p className="font-medium">{sector.nome}</p>
                 <p className={`text-sm font-semibold ${style.text}`}>{sector.risco}</p>
+                {sector.temSensor && <p className="mt-1 text-xs text-slate-500">Sensor ao vivo</p>}
               </li>
             );
           })}
